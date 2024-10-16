@@ -1,0 +1,609 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content wrapper to take up remaining space */
+.main-content {
+    flex: 1;
+    position: relative; /* Added to position overlays correctly */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 100px;
+    z-index: 10; 
+    
+}
+
+@media only screen and (min-width: 992px) {
+    .main-content {
+        padding-top: 40%; /* Adjust this value as needed */
+    }
+}
+
+/* Background Image */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 1; /* Adjust opacity for better text visibility */
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(74, 63, 63, 0.7);
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img {
+    height: 50px; /* Adjust as needed */
+    width: auto;
+}
+
+.navbar-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.company-name {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    position: fixed; /* Positioning relative to the navbar */
+    display: none; /* Initially hidden */
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px ;
+    transition: 0.4s;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.nav-list > li {
+    position: relative;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.nav-list a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Company name overlay styles */
+.company-name-overlay1{
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.company-name-overlay{
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+
+/* Fog effect animation */
+.company-name-overlay1 {
+    animation: fogEffect 5s infinite alternate;
+    opacity: 0.8;
+}
+
+@keyframes fogEffect {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+        opacity: 0.8;
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.7);
+        opacity: 1;
+    }
+    100% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.9), 0 0 60px rgba(255, 255, 255, 0.9);
+        opacity: 0.6;
+    }
+}
+
+.company-name-overlay {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    40% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* Navbar Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    z-index: 1001;
+}
+
+.dropdown-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li a {
+    padding: 10px;
+    color: white;
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .company-name {
+        display: block; /* Show the company name on mobile view */
+    }
+
+    .company-name-overlay {
+        display: none; /* Hide company name on mobile view */
+        
+    }
+
+    .company-name-overlay1 {
+        display: none; /* Hide company name on mobile view */
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Adjust based on navbar height */
+        left: 0;
+        background-color: rgba(74, 63, 63, 0.7);
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .nav-list > li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-menu {
+        position: relative;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .dropdown-menu li {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .nav-list a {
+        padding: 10px 10px;
+        font-size: 14px;
+    }
+
+    .dropdown-menu li a {
+        padding: 10px 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.quotes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    gap: 20px;
+}
+
+.quote-box {
+    position: relative;
+    flex: 1 1 300px;
+    max-width: 400px;
+    background: rgba(13, 13, 13, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.quote-box.left {
+    animation: slideInLeft 1s forwards;
+    animation-delay: 0.5s;
+}
+
+.quote-box.right {
+    animation: slideInRight 1s forwards;
+    animation-delay: 1s;
+}
+
+.quote-box img {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.quote-box:hover img {
+    transform: scale(1.1);
+}
+
+/* Keyframes for animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .quote-box {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .quote-box.left,
+    .quote-box.right {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .quote-box p {
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    position: relative;
+    padding: 60px 20px;
+    color: white;
+    text-align: center;
+    background: none;
+    flex-shrink: 0;
+    min-height: 100px; /* Ensures a minimum height */
+    box-sizing: border-box; /* Includes padding in the height calculation */
+}
+
+.footer-background {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO-nl1R1IueT512483JaGG8Y9ejAdZOUkByoHbzj50OBoLktUtC04_AAZn3I8AVhFW4ls&usqp=CAU');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Removed animation if it's causing issues with scrolling */
+}
+
+.footer-overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Overlay should be above the background */
+}
+
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+    margin: 20px;
+    opacity: 0;
+    animation: fadeInContent 1.5s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+.footer-section h4 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icons a img {
+    width: 40px;
+    height: 40px;
+    opacity: 0.8; /* Semi-transparent icons */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+    opacity: 1; /* Fully opaque on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes backgroundMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-section {
+        max-width: 100%;
+        text-align: center;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .footer {
+        padding: 40px 10px; /* Adjust padding for mobile */
+        height: 20px; /* Set the footer height to 50px on mobile devices */
+        overflow: visible; /* Make the footer content visible on mobile devices */
+    }
+
+    .footer-background {
+        height: 750%; /* Allow the background to adapt to content height */
+    }
+
+    .footer-overlay {
+        height: auto; /* Ensure overlay adapts to content height */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-section h4 {
+        font-size: 20px;
+    }
+    .footer-section p {
+        font-size: 14px;
+    }
+    .social-icons a img {
+        width: 30px;
+        height: 30px;
+    }
+    .footer {
+        padding: 30px 10px; /* Further adjust padding for smaller screens */
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .footer {
+        min-height: 300px; /* separate minimum height for desktop view */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Activities</title>
+    <link rel="stylesheet" href="social.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>Social Activities</h1>
+    </header>
+
+    <section class="activities-section">
+        <div class="activity-card" onclick="showDetails('activity1')">
+            <img src="./gallery_images/Covid/covid_2.jpg" alt="Activity 1">
+            <div class="activity-info">
+                <h3>Community Clean-Up</h3>
+                <p>Join us in keeping our community clean and green.</p>
+            </div>
+        </div>
+        <div class="activity-card" onclick="showDetails('activity2')">
+            <img src="./gallery_images/meetups/meetup_9.jpg" alt="Activity 2">
+            <div class="activity-info">
+                <h3>Tree Plantation Drive</h3>
+                <p>Help us plant trees and make our surroundings greener.</p>
+            </div>
+        </div>
+        <div class="activity-card" onclick="showDetails('activity3')">
+            <img src="./gallery_images/meetups/meetup_7.jpg" alt="Activity 3">
+            <div class="activity-info">
+                <h3>Food Distribution</h3>
+                <p>Volunteer with us to distribute food to those in need.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2 id="popupTitle"></h2>
+            <p id="popupDescription"></p>
+        </div>
+    </div>
+
+    <script src="social.js"></script>
+</body>
+</html>
